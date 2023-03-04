@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { PartialBeefData } from '../beef-model';
+import { PartialBeefData } from '../types';
 import imagesSchema from './property-schemas/images-schema';
 import farmSchema from './property-schemas/farm-schema';
 import priceSchema from './property-schemas/price-schema';
