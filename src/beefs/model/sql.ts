@@ -10,7 +10,7 @@ FROM beefs as b
 LEFT JOIN images as i
 ON i.beefId = b.id
 LEFT JOIN  farms as f
-ON b.farmId = l.id`;
+ON b.farmId = f.id`;
 
 const GROUP = 'GROUP BY b.id;';
 

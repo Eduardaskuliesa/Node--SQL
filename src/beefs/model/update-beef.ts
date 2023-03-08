@@ -34,8 +34,8 @@ const prepareImagesSql: PrepareSql = (beefData) => {
 
 const prepareFarmSql: PrepareSql = (beefData) => {
   const sql = beefData.farm !== undefined ? `
-    INSERT INTO farms (country, city) VALUES
-    (:country, :city);` : '';
+    INSERT INTO farms (country, name) VALUES
+    (:country, :name);` : '';
   const bindings = beefData.farm ?? {};
 
   return [sql, bindings];

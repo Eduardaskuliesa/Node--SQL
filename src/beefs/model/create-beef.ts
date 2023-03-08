@@ -4,7 +4,7 @@ import config from '../../config';
 import { BeefViewModel, BeefData } from '../types';
 import SQL from './sql';
 
-type CreateHouseQueryResult = [
+type CreateBeefQueryResult = [
   mysql.ResultSetHeader,
   mysql.ResultSetHeader,
   mysql.ResultSetHeader,
@@ -26,7 +26,7 @@ export const createBeef = async (beefData: BeefData): Promise<BeefViewModel> => 
     INSERT INTO images (src, beefId) VALUES
     ${beefData.images.map(() => '(?, @beefId)').join(',\n')};
     ${SQL.SELECT}
-    WHERE h.id = @beefId
+    WHERE b.id = @beefId
     ${SQL.GROUP};
   `;
   const preparedSqlData = [
@@ -39,9 +39,9 @@ export const createBeef = async (beefData: BeefData): Promise<BeefViewModel> => 
   ];
 
   const [queryResultsArr] = await mySqlConnection.query(preparedSql, preparedSqlData);
-  const [createdHouse] = (queryResultsArr as CreateHouseQueryResult)[4];
+  const [createdBeef] = (queryResultsArr as CreateBeefQueryResult)[4];
 
   await mySqlConnection.end();
 
-  return createdHouse;
+  return createdBeef;
 };

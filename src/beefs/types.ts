@@ -1,7 +1,7 @@
 import { RowDataPacket } from 'mysql2';
 
 type PrivateViewBeefModel = {
-  id: string,
+  id: number,
   cut: string,
   farm : {
     country: string,
