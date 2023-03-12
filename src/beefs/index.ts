@@ -1,4 +1,5 @@
-import express from 'express';
+import express, { RequestHandler } from 'express';
+import authMiddleware from '../middlewares/auth-middlewere';
 
 import { createBeef } from './mutations/create-beef';
 import { deleteBeef } from './mutations/delete-beef';
@@ -11,8 +12,8 @@ const beefsRouter = express.Router();
 beefsRouter.get('/', getBeefs);
 beefsRouter.get('/:id', getBeef);
 
-beefsRouter.post('/', createBeef);
-beefsRouter.patch('/:id', updateBeef);
-beefsRouter.delete('/:id', deleteBeef);
+beefsRouter.post('/', authMiddleware, createBeef);
+beefsRouter.patch('/:id', authMiddleware, updateBeef as RequestHandler);
+beefsRouter.delete('/:id', authMiddleware, deleteBeef as RequestHandler);
 
 export default beefsRouter;

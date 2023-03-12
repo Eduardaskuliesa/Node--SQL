@@ -1,15 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import mysql from 'mysql2/promise';
-import config from '../../config';
-import { NotFoundError } from '../../services/error-service';
-import { UserEntityRow } from '../types';
+import config from '../config';
+import { NotFoundError } from '../services/error-service';
+import { UserEntityRow } from '../auth/types';
+import SQL from './sql';
 
-export const getUser = async (email: string): Promise<UserEntityRow> => {
+export const getUserByEmail = async (email: string): Promise<UserEntityRow> => {
   const mySqlConnection = await mysql.createConnection(config.db);
 
   const preparedSql = `
-    SELECT id, name, surname, email, password, role
-    FROM users
+    ${SQL.SELECT}
     WHERE users.email = ?;
   `;
 
